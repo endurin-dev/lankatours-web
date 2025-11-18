@@ -124,6 +124,54 @@ export default function Home() {
   </div>
 </section>
 
+
+{/* INFORMATION PARTNERS – Auto-Scrolling Slider Strip */}
+<section className="py-14 bg-white border-y border-gray-100">
+  <div className="container mx-auto px-6">
+   <p className="text-center text-gray-900 text-sm md:text-base font-semibold tracking-wider mb-10">
+      Cooperate Working With
+    </p>
+
+    {/* Infinite Horizontal Scroll */}
+    <div className="overflow-hidden">
+      <div className="flex animate-[slide_30s_linear_infinite] items-center gap-16 md:gap-24">
+        {/* Your 7 Real Partner Logos – Repeat twice for seamless loop */}
+        {[
+          "/partners/bluenote-logo.jpg",
+          "/partners/tripadvisor-logo.png",
+          "/partners/GetYourGuide_Logo.jpg",
+          "/partners/Booking-logo.png",
+          "/partners/Agoda_logo.png",
+          "/partners/avawia_logo.png",
+          "/partners/chenda_logo.jpeg",
+          // Repeat for smooth infinite scroll
+          "/partners/bluenote-logo.jpg",
+          "/partners/tripadvisor-logo.png",
+          "/partners/GetYourGuide_Logo.jpg",
+          "/partners/Booking-logo.png",
+          "/partners/Agoda_logo.png",
+          "/partners/avawia_logo.png",
+          "/partners/chenda_logo.jpeg",
+        ].map((src, index) => (
+          <div key={index} className="flex-shrink-0">
+            <Image
+              src={src}
+              alt="Trusted Partner"
+              width={160}
+              height={80}
+              className="h-16 w-auto object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-500"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
 {/* SERVICE GRID – With SEO Descriptions (As per Quotation) */}
 <section className="py-20 bg-gray-50">
   <div className="container mx-auto px-6 max-w-7xl">
