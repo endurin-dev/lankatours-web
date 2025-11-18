@@ -10,7 +10,7 @@ export default function Home() {
       <section className="relative h-screen min-h-[600px] flex items-center justify-center text-white overflow-hidden">
         {/* Background Image */}
         <Image
-          src="/images/hero-banner.jpg"   // ← Put your best Sri Lanka photo here (e.g., Sigiriya, beach, tea plantation)
+          src="/images/hero-banner.webp"   // ← Put your best Sri Lanka photo here (e.g., Sigiriya, beach, tea plantation)
           alt="Welcome to Sri Lanka"
           fill
           priority
