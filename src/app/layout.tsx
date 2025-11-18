@@ -6,6 +6,7 @@ import Navbar from '@/components/organisms/Navbar';
 import Footer from '@/components/organisms/Footer';
 
 
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
