@@ -18,6 +18,13 @@
     --foreground: #ededed;
   }
 }
+/* src/app/globals.css */
+@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
 
 body {
   background: var(--background);
