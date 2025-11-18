@@ -65,17 +65,60 @@ export default function Home() {
 
       <div className="flex flex-col sm:flex-row gap-6 justify-center">
         <Link
-          href="/transfers"
-          className="bg-green-600 hover:bg-green-700 text-white px-10 py-5 rounded-lg text-lg md:text-xl font-bold flex items-center justify-center gap-3 shadow-xl transition"
-        >
-          Book Airport Transfer <ArrowRight className="w-6 h-6" />
-        </Link>
+  href="/transfers"
+  className="
+    relative inline-flex items-center justify-center gap-3
+    px-10 py-5 rounded-2xl text-lg md:text-xl font-bold text-white
+    bg-white/10 backdrop-blur-xl border border-white/30
+    shadow-2xl shadow-black/20
+    overflow-hidden
+    transition-all duration-500 ease-out
+    hover:bg-white/20 hover:border-white/50 hover:shadow-3xl hover:shadow-black/30
+    hover:scale-105 active:scale-95
+    group
+  "
+>
+  {/* Inner Glow Effect */}
+  <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+  
+  {/* Subtle Bottom Highlight (iPhone style) */}
+  <span className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/20 to-transparent opacity-40" />
+
+  {/* Text + Icon */}
+  <span className="relative z-10 flex items-center gap-3">
+    Book Airport Transfer 
+    <ArrowRight className="w-7 h-7 transition-transform duration-300 group-hover:translate-x-2" />
+  </span>
+</Link>
         <Link
-          href="/contact"
-          className="bg-white text-green-700 hover:bg-gray-100 px-10 py-5 rounded-lg text-lg md:text-xl font-bold border-2 border-white transition"
-        >
-          Get Quote
-        </Link>
+  href="/contact"
+  className="
+    relative inline-flex items-center justify-center
+    px-10 py-5 rounded-2xl text-lg md:text-xl font-bold text-white
+    /* Green Glass Background */
+    bg-gradient-to-br from-green-500/30 to-emerald-600/40
+    backdrop-blur-xl
+    border border-white/40
+    /* 3D Glass Effect */
+    shadow-2xl shadow-green-900/40
+    /* Inner Shine (iPhone style) */
+    before:absolute before:inset-0 before:bg-gradient-to-t before:from-white/20 before:via-transparent before:to-transparent before:opacity-60
+    /* Hover Glow */
+    hover:from-green-500/40 hover:to-emerald-600/50 hover:border-white/60 hover:shadow-3xl hover:shadow-green-900/50
+    hover:scale-105 active:scale-95
+    transition-all duration-500 ease-out
+    overflow-hidden
+    group
+  "
+>
+  {/* Subtle top highlight */}
+  <span className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/30 to-transparent opacity-50" />
+  
+  {/* Button Text */}
+  <span className="relative z-10">
+    Get Quote
+  </span>
+</Link>
       </div>
     </div>
   </div>
@@ -115,6 +158,9 @@ Book your airport transfer today and secure your seamless start to paradise
           </span>
         </div>
       </div>
+
+
+
 
       {/* SMALL CARDS WITH SEO DESCRIPTIONS */}
       <ServiceCard 

@@ -40,6 +40,13 @@
     transform: translateY(0) scale(1);
   }
 }
+@keyframes slide {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-slide {
+          animation: slide 25s linear infinite;
+        }
 
 .animate-\[appear_0\.6s_ease-out_forwards\] {
   animation: appear 0.6s ease-out forwards;
