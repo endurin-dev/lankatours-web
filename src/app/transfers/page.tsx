@@ -122,145 +122,199 @@ WhatsApp: ${whatsapp || phone}
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative h-96 md:h-screen/2 flex items-center justify-center text-white overflow-hidden">
-        <Image
-          src="/images/transfers-hero.jpg"
-          alt="Airport Transfer Sri Lanka"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Airport & Hotel Transfers Sri Lanka
-          </h1>
-          <p className="text-xl md:text-2xl mb-8">
-            Private • Safe • Comfortable • Fixed Prices • 24/7 Available
-          </p>
-          <p className="text-lg opacity-90">
-            From Colombo Airport (CMB) to Any Destination – Instant Quote Below
-          </p>
+  {/* Hero */}
+<section className="relative h-96 md:h-screen/2 flex items-end justify-center text-white overflow-hidden">
+  <Image
+    src="/images/transfers-hero-img2.webp"
+    alt="Airport Transfer Sri Lanka"
+    fill
+    className="object-cover"
+    priority
+  />
+  <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/90" />
+  <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pb-12 md:pb-20">
+    <h1 className="text-2xl md:text-4xl font-bold mb-4">
+      Airport & Hotel Transfers Sri Lanka
+    </h1>
+    <p className="text-lg md:text-xl mb-4">
+      Private • Safe • Comfortable • Fixed Prices • 24/7 Available
+    </p>
+    <p className="text-base md:text-lg opacity-90">
+      To Any Destination in Sri Lanka
+    </p>
+  </div>
+</section>
+
+
+{/* Main Booking Calculator */}
+<section className="py-16 md:py-24 bg-gray-50">
+  <div className="container mx-auto px-6 max-w-7xl">
+    {/* Header */}
+    <div className="text-center mb-12 md:mb-16">
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Get Instant Transfer Price & Book Now
+      </h2>
+      <p className="text-xl text-gray-600">
+        Real-time pricing • No hidden charges • Book in 60 seconds
+      </p>
+    </div>
+
+    {/* Main Card */}
+    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr]">
+
+        {/* LEFT SIDE – Step-by-Step Guide (Desktop only, pure white text) */}
+        <div className="hidden lg:block bg-gradient-to-b from-green-700 to-green-800 text-white p-12">
+          <h3 className="text-4xl font-bold mb-14 text-white">Easy 3-Step Booking</h3>
+          
+          <ol className="relative space-y-20 before:absolute before:left-9 before:top-20 before:bottom-20 before:w-0.5 before:bg-white/40">
+            <li className="relative pl-24">
+              <span className="absolute left-0 top-1 w-18 h-18 bg-white text-green-700 rounded-full flex items-center justify-center text-3xl font-bold shadow-xl">1</span>
+              <h4 className="text-2xl font-bold mb-3 text-white">Select Your Journey</h4>
+              <p className="text-lg leading-relaxed text-white/95">Pickup & drop-off locations, date, time, passengers & extras</p>
+            </li>
+            <li className="relative pl-24">
+              <span className="absolute left-0 top-1 w-18 h-18 bg-white text-green-700 rounded-full flex items-center justify-center text-3xl font-bold shadow-xl">2</span>
+              <h4 className="text-2xl font-bold mb-3 text-white">Review & Calculate</h4>
+              <p className="text-lg leading-relaxed text-white/95">See your full selection summary and instant fixed price</p>
+            </li>
+            <li className="relative pl-24">
+              <span className="absolute left-0 top-1 w-18 h-18 bg-white text-green-700 rounded-full flex items-center justify-center text-3xl font-bold shadow-xl">3</span>
+              <h4 className="text-2xl font-bold mb-3 text-white">Book & Relax</h4>
+              <p className="text-lg leading-relaxed text-white/95">We confirm via call/WhatsApp in ≤5 minutes – done!</p>
+            </li>
+          </ol>
         </div>
-      </section>
 
-      {/* Main Booking Calculator */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Get Instant Transfer Price & Book Now
-            </h2>
-            <p className="text-lg text-gray-600">
-              Real-time pricing • No hidden charges • Book in 60 seconds
-            </p>
-          </div>
+        {/* RIGHT SIDE – Form (All text BLACK) */}
+        <div className="p-8 md:p-12 lg:p-16 text-black">
+          
+          {/* Form Fields */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
 
-          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
-            {/* Form */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-              {/* From */}
-              <div>
-                <label className="block text-lg font-semibold mb-3 flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-green-600" /> Pickup Location
-                </label>
-                <select value={from} onChange={(e) => setFrom(e.target.value)} className="w-full px-5 py-4 border rounded-xl focus:border-green-600 focus:ring-4 focus:ring-green-100" required>
-                  {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
-                </select>
-                {from === 'Other (please specify)' && (
-                  <input type="text" placeholder="Enter pickup location" value={otherFrom} onChange={(e) => setOtherFrom(e.target.value)} className="w-full mt-3 px-5 py-4 border rounded-xl" required />
-                )}
-              </div>
-
-              {/* To */}
-              <div>
-                <label className="block text-lg font-semibold mb-3 flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-green-600" /> Drop-off Location
-                </label>
-                <select value={to} onChange={(e) => setTo(e.target.value)} className="w-full px-5 py-4 border rounded-xl focus:border-green-600 focus:ring-4 focus:ring-green-100" required>
-                  <option value="">Select destination</option>
-                  {locations.filter(l => l !== from).map(loc => <option key={loc} value={loc}>{loc}</option>)}
-                </select>
-                {to === 'Other (please specify)' && (
-                  <input type="text" placeholder="Enter drop-off location" value={otherTo} onChange={(e) => setOtherTo(e.target.value)} className="w-full mt-3 px-5 py-4 border rounded-xl" required />
-                )}
-              </div>
-
-              {/* Vehicle */}
-              <div className="md:col-span-2">
-                <label className="block text-lg font-semibold mb-4">Choose Vehicle</label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {vehicleTypes.map(v => (
-                    <button
-                      key={v.name}
-                      type="button"
-                      onClick={() => setVehicle(v)}
-                      className={`p-6 rounded-2xl border-2 transition-all ${vehicle.name === v.name ? 'border-green-600 bg-green-50 shadow-lg' : 'border-gray-300 hover:border-green-400'}`}
-                    >
-                      <Car className="w-12 h-12 mx-auto mb-3 text-green-600" />
-                      <p className="font-bold">{v.name}</p>
-                      <p className="text-xs text-gray-600">{v.pax}</p>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Passengers, Date, Time */}
-              <input type="number" placeholder="Passengers" value={passengers} onChange={(e) => setPassengers(e.target.value)} min="1" className="px-5 py-4 border rounded-xl" required />
-              <input type="date" value={pickupDate} onChange={(e) => setPickupDate(e.target.value)} min={new Date().toISOString().split('T')[0]} className="px-5 py-4 border rounded-xl" required />
-              <input type="time" value={pickupTime} onChange={(e) => setPickupTime(e.target.value)} className="px-5 py-4 border rounded-xl" required />
-
-              {/* Baby Seat & Extras */}
-              <select value={babySeat} onChange={(e) => setBabySeat(e.target.value)} className="px-5 py-4 border rounded-xl">
-                <option value="No">Baby Seat? No</option>
-                <option value="Yes">Yes (+ LKR 1,500)</option>
+            {/* Pickup */}
+            <div>
+              <label className="block text-lg font-semibold mb-3">Pickup Location</label>
+              <select value={from} onChange={(e) => setFrom(e.target.value)} className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl focus:border-green-600 focus:ring-4 focus:ring-green-100 text-black" required>
+                {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
               </select>
+              {from === 'Other (please specify)' && (
+                <input type="text" placeholder="Enter pickup location" value={otherFrom} onChange={(e) => setOtherFrom(e.target.value)} className="w-full mt-4 px-5 py-4 border-2 border-gray-300 rounded-xl text-black" required />
+              )}
+            </div>
 
-              <div className="space-y-3">
-                <label className="flex items-center gap-3"><input type="checkbox" checked={extras.wifi} onChange={(e) => setExtras({...extras, wifi: e.target.checked})} /> WiFi (+ LKR 1,000)</label>
-                <label className="flex items-center gap-3"><input type="checkbox" checked={extras.water} onChange={(e) => setExtras({...extras, water: e.target.checked})} /> Mineral Water (+ LKR 500)</label>
-                <label className="flex items-center gap-3"><input type="checkbox" checked={extras.waiting} onChange={(e) => setExtras({...extras, waiting: e.target.checked})} /> Extra Waiting (+ LKR 2,000/hr)</label>
+            {/* Drop-off */}
+            <div>
+              <label className="block text-lg font-semibold mb-3">Drop-off Location</label>
+              <select value={to} onChange={(e) => setTo(e.target.value)} className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl focus:border-green-600 focus:ring-4 focus:ring-green-100 text-black" required>
+                <option value="">Select destination</option>
+                {locations.filter(l => l !== from).map(loc => <option key={loc} value={loc}>{loc}</option>)}
+              </select>
+              {to === 'Other (please specify)' && (
+                <input type="text" placeholder="Enter drop-off location" value={otherTo} onChange={(e) => setOtherTo(e.target.value)} className="w-full mt-4 px-5 py-4 border-2 border-gray-300 rounded-xl text-black" required />
+              )}
+            </div>
+
+            <div><label className="block text-lg font-semibold mb-3">Pickup Date</label><input type="date" value={pickupDate} onChange={(e) => setPickupDate(e.target.value)} min={new Date().toISOString().split('T')[0]} className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl text-black" required /></div>
+            <div><label className="block text-lg font-semibold mb-3">Pickup Time</label><input type="time" value={pickupTime} onChange={(e) => setPickupTime(e.target.value)} className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl text-black" required /></div>
+            <div><label className="block text-lg font-semibold mb-3">Passengers</label><input type="number" placeholder="Number of passengers" value={passengers} onChange={(e) => setPassengers(e.target.value)} min="1" className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl text-black" required /></div>
+            <div><label className="block text-lg font-semibold mb-3">Baby/Child Seat?</label>
+              <select value={babySeat} onChange={(e) => setBabySeat(e.target.value)} className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl text-black">
+                <option value="No">No, thanks</option>
+                <option value="Yes">Yes – + LKR 1,500</option>
+              </select>
+            </div>
+
+            {/* Vehicle Selection */}
+            <div className="md:col-span-2 mt-8">
+              <label className="block text-lg font-semibold mb-6">Choose Your Vehicle</label>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {vehicleTypes.map(v => (
+                  <button key={v.name} type="button" onClick={() => setVehicle(v)}
+                    className={`p-7 rounded-2xl border-3 transition-all ${vehicle.name === v.name ? 'border-green-600 bg-green-50 shadow-xl scale-105' : 'border-gray-300 hover:border-green-500 hover:shadow-lg'}`}
+                  >
+                    <Car className="w-16 h-16 mx-auto mb-4 text-green-600" />
+                    <p className="font-bold text-lg text-black">{v.name}</p>
+                    <p className="text-sm text-gray-700">{v.pax} • {v.luggage}</p>
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Calculate Button */}
+            {/* Extras */}
+            <div className="md:col-span-2">
+              <label className="block text-lg font-semibold mb-5">Optional Extras</label>
+              <div className="space-y-5 bg-gray-50 p-7 rounded-2xl text-black">
+                <label className="flex items-center gap-4 text-base"><input type="checkbox" checked={extras.wifi} onChange={(e) => setExtras({...extras, wifi: e.target.checked})} className="w-6 h-6 text-green-600 rounded" /> WiFi on board (+ LKR 1,000)</label>
+                <label className="flex items-center gap-4 text-base"><input type="checkbox" checked={extras.water} onChange={(e) => setExtras({...extras, water: e.target.checked})} /> Mineral Water for all (+ LKR 500)</label>
+                <label className="flex items-center gap-4 text-base"><input type="checkbox" checked={extras.waiting} onChange={(e) => setExtras({...extras, waiting: e.target.checked})} /> Extra waiting time (+ LKR 2,000/hr)</label>
+              </div>
+            </div>
+          </div>
+
+          {/* Summary + Calculate Button */}
+          <div className="border-t-4 border-gray-200 pt-12 mt-16 text-black">
+            <h3 className="text-3xl font-bold text-center mb-10">Your Transfer Summary</h3>
+
+            <div className="bg-gray-50 rounded-3xl p-10 mb-12 text-black text-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div><span className="text-gray-600">From → To:</span><br /><strong className="text-xl">{from && to ? `${from === 'Other (please specify)' ? otherFrom : from} → ${to === 'Other (please specify)' ? otherTo : to}` : '—'}</strong></div>
+                <div><span className="text-gray-600">Date & Time:</span><br /><strong className="text-xl">{pickupDate && pickupTime ? `${pickupDate} at ${pickupTime}` : '—'}</strong></div>
+                <div><span className="text-gray-600">Passengers:</span><br /><strong className="text-xl">{passengers || '—'}</strong></div>
+                <div><span className="text-gray-600">Vehicle:</span><br /><strong className="text-xl">{vehicle.name ? `${vehicle.name} (${vehicle.pax})` : '—'}</strong></div>
+                <div className="md:col-span-2"><span className="text-gray-600">Extras:</span><br /><strong className="text-xl">
+                  {[
+                    babySeat === 'Yes' && 'Baby Seat (+1,500)',
+                    extras.wifi && 'WiFi (+1,000)',
+                    extras.water && 'Water (+500)',
+                    extras.waiting && 'Extra Waiting (+2,000/hr)'
+                  ].filter(Boolean).join(' • ') || 'None'}
+                </strong></div>
+              </div>
+            </div>
+
             <div className="text-center">
               <button
                 onClick={calculateFare}
-                className="bg-green-600 hover:bg-green-700 text-white px-16 py-6 rounded-2xl text-xl font-bold shadow-xl hover:shadow-2xl transition-all"
+                disabled={!from || !to || !passengers || !pickupDate || !pickupTime || !vehicle.name}
+                className="bg-green-600 hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-24 py-7 rounded-2xl text-2xl font-bold shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105"
               >
-                Calculate Fare & Book Now
+                {fare > 0 ? 'Re-Calculate Fare' : 'Calculate Fare & Book Now'}
               </button>
             </div>
-
-            {/* Fare Result + Booking Form */}
-            {fare !== null && fare > 0 && (
-              <div className="mt-12 p-10 bg-green-50 rounded-3xl border-4 border-green-200">
-                <h3 className="text-4xl font-bold text-center text-green-700 mb-8">
-                  Total Fare: LKR {fare.toLocaleString()}
-                </h3>
-
-                <form onSubmit={handleBooking} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="Full Name *" value={name} onChange={(e) => setName(e.target.value)} required className="px-6 py-4 border rounded-xl" />
-                    <input type="email" placeholder="Email *" value={email} onChange={(e) => setEmail(e.target.value)} required className="px-6 py-4 border rounded-xl" />
-                    <input type="tel" placeholder="Phone *" value={phone} onChange={(e) => setPhone(e.target.value)} required className="px-6 py-4 border rounded-xl" />
-                    <input type="tel" placeholder="WhatsApp (Recommended)" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} className="px-6 py-4 border rounded-xl" />
-                  </div>
-                  <textarea placeholder="Flight number, hotel name, special requests..." rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="w-full px-6 py-4 border rounded-xl" />
-
-                  <div className="text-center">
-                    <button type="submit" className="bg-orange-600 hover:bg-orange-700 text-white px-16 py-6 rounded-2xl text-xl font-bold shadow-xl hover:shadow-2xl transition-all">
-                      Confirm Booking – We’ll Call/WhatsApp in 5 Minutes
-                    </button>
-                  </div>
-                </form>
-              </div>
-            )}
           </div>
+
+          {/* Final Fare + Booking Form */}
+          {fare !== null && fare > 0 && (
+            <div className="mt-20 p-12 bg-green-50 rounded-3xl border-4 border-green-200 text-black">
+              <h3 className="text-5xl font-bold text-center text-green-700 mb-12">
+                Total Fare: LKR {fare.toLocaleString()}
+              </h3>
+
+              <form onSubmit={handleBooking} className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <input type="text" placeholder="Full Name *" value={name} onChange={(e) => setName(e.target.value)} required className="px-6 py-5 border-2 border-gray-300 rounded-xl text-black text-lg" />
+                  <input type="email" placeholder="Email *" value={email} onChange={(e) => setEmail(e.target.value)} required className="px-6 py-5 border-2 border-gray-300 rounded-xl text-black text-lg" />
+                  <input type="tel" placeholder="Phone *" value={phone} onChange={(e) => setPhone(e.target.value)} required className="px-6 py-5 border-2 border-gray-300 rounded-xl text-black text-lg" />
+                  <input type="tel" placeholder="WhatsApp (Recommended)" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} className="px-6 py-5 border-2 border-gray-300 rounded-xl text-black text-lg" />
+                </div>
+                <textarea placeholder="Flight number, hotel name, special requests..." rows={5} value={message} onChange={(e) => setMessage(e.target.value)} className="w-full px-6 py-5 border-2 border-gray-300 rounded-xl text-black text-lg" />
+
+                <div className="text-center">
+                  <button type="submit" className="bg-orange-600 hover:bg-orange-700 text-white px-24 py-7 rounded-2xl text-2xl font-bold shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105">
+                    Confirm Booking – We’ll Contact You in ≤5 Minutes
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+
     </>
   );
 }
