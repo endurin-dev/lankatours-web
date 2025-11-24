@@ -11,32 +11,51 @@ export default function ScooterRentalPage() {
   return (
     <>
       {/* Hero Section – Inviting & Adventurous */}
-      <section className="relative h-[70vh] md:h-[80vh] flex items-center justify-center text-white overflow-hidden">
-        <Image
-          src="/images/scooter-hero.webp" // Replace with a vibrant image of scooters in Sri Lanka (beach road, hills, etc.)
-          alt="Scooter Rental in Sri Lanka - Explore Freely with Lanka Tours & Transfers"
-          fill
-          priority
-          className="object-cover brightness-90"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/40" />
+<section className="relative h-[60vh] md:h-[65vh] flex items-center justify-center text-white overflow-hidden">
+  <Image
+    src="/images/scooter-hero.webp"
+    alt="Scooter Rental in Sri Lanka - Explore Freely"
+    fill
+    priority
+    className="object-cover"
+  />
 
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
-            Scooter Rental in Sri Lanka
-          </h1>
-          <p className="text-xl md:text-2xl opacity-95 max-w-3xl mx-auto drop-shadow-lg mb-10">
-            Freedom to Explore • From LKR 2,000/day • Island-wide Delivery • Fully Insured
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 px-10 py-5 bg-green-600 hover:bg-green-700 text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-green-900/50 transition-all hover:scale-105"
-          >
-            <Bike className="w-7 h-7" />
-            Get Your Scooter Quote
-          </Link>
-        </div>
-      </section>
+  {/* Darker overlay + stronger contrast */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/60" />
+
+  <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+    <h1 
+      className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight leading-tight"
+      style={{ 
+        textShadow: `
+          0 4px 15px rgba(0,0,0,0.95),
+          0 10px 30px rgba(0,0,0,0.9),
+          0 20px 50px rgba(0,0,0,0.85),
+          0 0 80px rgba(0,0,0,0.8)
+        `
+      }}
+    >
+      Scooter Rental in Sri Lanka
+    </h1>
+
+    <p 
+      className="text-xl md:text-2xl opacity-95 max-w-3xl mx-auto mb-10 font-medium"
+      style={{ 
+        textShadow: '0 4px 20px rgba(0,0,0,0.9)' 
+      }}
+    >
+      Freedom to Explore • From LKR 2,000/day • Island-wide Delivery • Fully Insured
+    </p>
+
+    <Link
+      href="/contact"
+      className="inline-flex items-center gap-3 px-10 py-5 bg-green-600 hover:bg-green-700 text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-green-900/60 transition-all hover:scale-105"
+    >
+      <Bike className="w-7 h-7" />
+      Get Your Scooter Quote
+    </Link>
+  </div>
+</section>
 
       {/* Introduction Section */}
       <section className="py-20 bg-white">
