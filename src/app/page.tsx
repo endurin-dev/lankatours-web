@@ -627,6 +627,208 @@ Book your airport transfer today and secure your seamless start to paradise
 </section>
 
 
+{/* FAQ SECTION – Trust-Building & SEO Gold for Sri Lanka Travel */}
+<section className="py-20 bg-white">
+  <div className="container mx-auto px-6 max-w-5xl">
+    {/* Heading */}
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Frequently Asked Questions
+      </h2>
+      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+        Everything you need to know before booking your Sri Lanka airport transfer or tour
+      </p>
+    </div>
+
+    {/* Accordion-style FAQs */}
+    <div className="space-y-6">
+      {/* FAQ 1 */}
+      <details className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <summary className="flex items-center justify-between px-8 py-6 cursor-pointer font-semibold text-lg text-gray-800">
+          Do you provide meet & greet at Colombo Bandaranaike Airport (CMB)?
+          <span className="ml-4 text-green-600 group-open:rotate-180 transition-transform">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </summary>
+        <div className="px-8 pb-6 text-gray-700 leading-relaxed">
+          Yes! Your driver will be waiting in the arrivals hall with a clear name board showing your name. 
+          We monitor your flight in real-time, so even if you're delayed, we’ll be there when you land — no extra charge.
+        </div>
+      </details>
+
+      {/* FAQ 2 */}
+      <details className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <summary className="flex items-center justify-between px-8 py-6 cursor-pointer font-semibold text-lg text-gray-800">
+          Are your prices fixed? Any hidden charges or night surcharges?
+          <span className="ml-4 text-green-600 group-open:rotate-180 transition-transform">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </summary>
+        <div className="px-8 pb-6 text-gray-700 leading-relaxed">
+          <strong>No hidden fees — ever.</strong> The price you see is the price you pay. 
+          Includes all taxes, tolls, parking, fuel, and even late-night/early-morning transfers. 
+          No surge pricing like Uber or PickMe during peak season.
+        </div>
+      </details>
+
+      {/* FAQ 3 */}
+      <details className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <summary className="flex items-center justify-between px-8 py-6 cursor-pointer font-semibold text-lg text-gray-800">
+          Can I book a baby/child seat or booster?
+          <span className="ml-4 text-green-600 group-open:rotate-180 transition-transform">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </summary>
+        <div className="px-8 pb-6 text-gray-700 leading-relaxed">
+          Yes! We offer rear-facing infant seats, forward-facing child seats, and boosters — 
+          all certified and clean. Just select during booking (+ LKR 1,500 per seat).
+        </div>
+      </details>
+
+      {/* FAQ 4 */}
+      <details className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <summary className="flex items-center justify-between px-8 py-6 cursor-pointer font-semibold text-lg text-gray-800">
+          How do I pay? Do you accept credit cards?
+          <span className="ml-4 text-green-600 group-open:rotate-180 transition-transform">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </summary>
+        <div className="px-8 pb-6 text-gray-700 leading-relaxed">
+          Pay online securely via card (Visa/Mastercard) or pay the driver in cash (LKR, USD, EUR). 
+          No deposit required for most bookings — pay on arrival if you prefer.
+        </div>
+      </details>
+
+      {/* FAQ 5 */}
+      <details className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <summary className="flex items-center justify-between px-8 py-6 cursor-pointer font-semibold text-lg text-gray-800">
+          What if my flight is delayed or arrives early?
+          <span className="ml-4 text-green-600 group-open:rotate-180 transition-transform">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </summary>
+        <div className="px-8 pb-6 text-gray-700 leading-relaxed">
+          We track all flights in real-time. Your driver will adjust automatically — 
+          whether you land 3 hours early or 5 hours late. <strong>No extra waiting charges</strong> for flight delays.
+        </div>
+      </details>
+
+      {/* FAQ 6 */}
+      <details className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <summary className="flex items-center justify-between px-8 py-6 cursor-pointer font-semibold text-lg text-gray-800">
+          Is it safe to travel with you as a solo female traveler?
+          <span className="ml-4 text-green-600 group-open:rotate-180 transition-transform">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </summary>
+        <div className="px-8 pb-6 text-gray-700 leading-relaxed">
+          Absolutely yes. All our drivers are licensed, background-checked, English-speaking, and respectful. 
+          Thousands of solo female travelers trust us every year. We can even assign female drivers upon request.
+        </div>
+      </details>
+
+      {/* FAQ 7 */}
+      <details className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <summary className="flex items-center justify-between px-8 py-6 cursor-pointer font-semibold text-lg text-gray-800">
+          Can I book a transfer from airport directly to Kandy, Ella, Galle, or Yala?
+          <span className="ml-4 text-green-600 group-open:rotate-180 transition-transform">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </summary>
+        <div className="px-8 pb-6 text-gray-700 leading-relaxed">
+          Yes! We offer direct long-distance transfers to <strong>any destination in Sri Lanka</strong> — 
+          Kandy, Ella, Galle, Bentota, Sigiriya, Trincomalee, Jaffna, and more. Fixed price, no stops, no sharing.
+        </div>
+      </details>
+
+      {/* FAQ 8 */}
+      <details className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <summary className="flex items-center justify-between px-8 py-6 cursor-pointer font-semibold text-lg text-gray-800">
+          Do you offer free cancellation?
+          <span className="ml-4 text-green-600 group-open:rotate-180 transition-transform">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </summary>
+        <div className="px-8 pb-6 text-gray-700 leading-relaxed">
+          Yes — cancel up to <strong>24 hours before pickup</strong> for a full refund. 
+          No questions asked. Perfect peace of mind for uncertain travel plans.
+        </div>
+      </details>
+
+      {/* FAQ 9 */}
+      <details className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <summary className="flex items-center justify-between px-8 py-6 cursor-pointer font-semibold text-lg text-gray-800">
+          Are your vehicles air-conditioned and comfortable?
+          <span className="ml-4 text-green-600 group-open:rotate-180 transition-transform">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </summary>
+        <div className="px-8 pb-6 text-gray-700 leading-relaxed">
+          All vehicles are modern, fully air-conditioned sedans, minivans, or luxury vans with WiFi, 
+          bottled water, and plenty of luggage space. Cleaned and sanitized before every trip.
+        </div>
+      </details>
+
+      {/* FAQ 10 */}
+      <details className="group bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+        <summary className="flex items-center justify-between px-8 py-6 cursor-pointer font-semibold text-lg text-gray-800">
+          How can I contact you after booking?
+          <span className="ml-4 text-green-600 group-open:rotate-180 transition-transform">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
+        </summary>
+        <div className="px-8 pb-6 text-gray-700 leading-relaxed">
+          We confirm every booking via <strong>WhatsApp & phone call within 5 minutes</strong>. 
+          You’ll receive your driver’s name, photo, vehicle details, and live tracking link. 
+          24/7 support team available.
+        </div>
+      </details>
+    </div>
+
+    {/* Final CTA */}
+    <div className="text-center mt-16">
+      <p className="text-xl text-gray-700 mb-6">
+        Still have questions?
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Link
+          href="/contact"
+          className="inline-flex items-center gap-3 px-10 py-5 bg-green-600 hover:bg-green-700 text-white font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+        >
+          <Phone className="w-6 h-6" />
+          Contact Us on WhatsApp
+        </Link>
+        <Link
+          href="/transfers"
+          className="px-10 py-5 border-2 border-green-600 text-green-600 hover:bg-green-50 font-bold text-lg rounded-2xl transition-all"
+        >
+          Get Instant Quote →
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 

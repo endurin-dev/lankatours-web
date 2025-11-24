@@ -122,28 +122,126 @@ WhatsApp: ${whatsapp || phone}
 
   return (
     <>
-  {/* Hero */}
-<section className="relative h-96 md:h-screen/2 flex items-end justify-center text-white overflow-hidden">
-  <Image
-    src="/images/transfers-hero-img2.webp"
-    alt="Airport Transfer Sri Lanka"
-    fill
-    className="object-cover"
-    priority
-  />
-  <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/90" />
-  <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pb-12 md:pb-20">
-    <h1 className="text-2xl md:text-4xl font-bold mb-4">
-      Airport & Hotel Transfers Sri Lanka
-    </h1>
-    <p className="text-lg md:text-xl mb-4">
-      Private • Safe • Comfortable • Fixed Prices • 24/7 Available
-    </p>
-    <p className="text-base md:text-lg opacity-90">
-      To Any Destination in Sri Lanka
-    </p>
+
+
+{/* SEO-Optimized Hero with Rich Service Descriptions */}
+<section className="bg-white pt-32 pb-20 md:pt-40 md:pb-28">
+  <div className="container mx-auto px-6 max-w-7xl">
+
+    {/* Headline */}
+    <div className="text-center mb-14 md:mb-16">
+      <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+        Airport & Hotel Transfers Sri Lanka
+      </h1>
+      <p className="text-xl md:text-2xl text-gray-700 mt-3 md:mt-4 max-w-4xl mx-auto leading-snug">
+        Private • Safe • Comfortable • Fixed Prices • 24/7 Available
+      </p>
+      <p className="text-lg md:text-xl text-gray-600 mt-2 md:mt-3 leading-snug">
+        From Colombo Airport (CMB) or Any Hotel – Island-wide Coverage
+      </p>
+    </div>
+
+    {/* SEO-Rich Services Grid */}
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-10">
+
+      {/* 1. 24/7 Service */}
+      <div className="group text-center transform transition-all duration-300 hover:scale-110">
+        <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl">
+          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 className="font-bold text-gray-800 text-sm md:text-base">24/7 Airport Transfers</h3>
+        <p className="text-xs md:text-sm text-gray-600 mt-1 leading-tight">
+          Available round-the-clock for early arrivals, late flights, or midnight transfers across Sri Lanka
+        </p>
+      </div>
+
+      {/* 2. No Hidden Fees */}
+      <div className="group text-center transform transition-all duration-300 hover:scale-110">
+        <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl">
+          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 className="font-bold text-gray-800 text-sm md:text-base">Fixed Price Guarantee</h3>
+        <p className="text-xs md:text-sm text-gray-600 mt-1 leading-tight">
+          Transparent pricing – no surge, no meter, no extra charges even during peak tourist season
+        </p>
+      </div>
+
+      {/* 3. Meet & Greet */}
+      <div className="group text-center transform transition-all duration-300 hover:scale-110">
+        <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl">
+          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </div>
+        <h3 className="font-bold text-gray-800 text-sm md:text-base">Personal Meet & Greet</h3>
+        <p className="text-xs md:text-sm text-gray-600 mt-1 leading-tight">
+          Driver waits with your name board at Bandaranaike International Airport arrivals hall
+        </p>
+      </div>
+
+      {/* 4. Door-to-Door Service */}
+      <div className="group text-center transform transition-all duration-300 hover:scale-110">
+        <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl">
+          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+        </div>
+        <h3 className="font-bold text-gray-800 text-sm md:text-base">Door-to-Door Delivery</h3>
+        <p className="text-xs md:text-sm text-gray-600 mt-1 leading-tight">
+          Direct transfer to your hotel in Colombo, Kandy, Galle, Bentota, Sigiriya, Ella & beyond
+        </p>
+      </div>
+
+      {/* 5. Flight Monitoring */}
+      <div className="group text-center transform transition-all duration-300 hover:scale-110">
+        <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl">
+          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </div>
+        <h3 className="font-bold text-gray-800 text-sm md:text-base">Real-Time Flight Tracking</h3>
+        <p className="text-xs md:text-sm text-gray-600 mt-1 leading-tight">
+          We track your flight and adjust pickup time automatically – no stress if delayed
+        </p>
+      </div>
+
+      {/* 6. Free Cancellation */}
+      <div className="group text-center transform transition-all duration-300 hover:scale-110">
+        <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl">
+          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 className="font-bold text-gray-800 text-sm md:text-base">Free Cancellation</h3>
+        <p className="text-xs md:text-sm text-gray-600 mt-1 leading-tight">
+          Cancel up to 24 hours before your Sri Lanka airport transfer – full refund, no questions
+        </p>
+      </div>
+
+    </div>
+
+    {/* Scroll CTA */}
+    <div className="text-center mt-16">
+      <p className="text-2xl md:text-3xl font-bold text-gray-800">
+        Get Instant Quote in 10 Seconds
+      </p>
+      <div className="inline-flex items-center mt-4">
+        <div className="h-1 w-32 bg-green-600 rounded-full"></div>
+        <span className="mx-5 text-green-600 font-bold text-xl">Scroll Down</span>
+        <div className="h-1 w-32 bg-green-600 rounded-full"></div>
+      </div>
+    </div>
+
   </div>
 </section>
+
+
+
+
 
 
 {/* Main Booking Calculator */}
@@ -302,7 +400,7 @@ WhatsApp: ${whatsapp || phone}
 
                 <div className="text-center">
                   <button type="submit" className="bg-orange-600 hover:bg-orange-700 text-white px-24 py-7 rounded-2xl text-2xl font-bold shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105">
-                    Confirm Booking – We’ll Contact You in ≤5 Minutes
+                    Confirm Booking
                   </button>
                 </div>
               </form>
