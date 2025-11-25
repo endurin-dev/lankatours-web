@@ -11,43 +11,23 @@ export default function ContactPage() {
   return (
     <>
       {/* HERO – Smaller fonts, aligned to bottom, smooth fade at bottom */}
-   <section className="relative h-[65vh] md:h-[70vh] flex flex-col justify-end text-white pb-16 md:pb-20 overflow-hidden">
-        <Image
-          src="/images/contact-hero_2.webp"
-          alt="Contact Lanka Tours & Transfers"
-          fill
-          priority
-          className="object-cover brightness-110"
-        />
+<section className="relative h-[45vh] md:h-[50vh] flex items-end justify-center pb-10 text-center overflow-hidden">
+  <Image src="/images/coast.webp" alt="Contact Us" fill priority className="object-cover brightness-110" />
+  <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70" />
 
-        {/* Light overlay + soft fade at bottom to blend with next section */}
-    <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
-
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-<h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 text-white tracking-tight"
-    style={{ textShadow: '0 4px 12px rgba(0,0,0,0.9)' }}>
-  Get in Touch With Us
-</h1>
-
-
-
-
-          <div className="mt-10">
-<a href="https://wa.me/94773951779" target="_blank" rel="noopener noreferrer"
-  className="group relative inline-flex items-center gap-4 px-10 py-6 
-             bg-white/20 backdrop-blur-xl border-2 border-white/40 
-             text-white font-bold text-xl rounded-3xl 
-             shadow-2xl hover:shadow-white/30
-             transition-all duration-500 hover:scale-110 active:scale-95
-             animate-pulse-glass">
-  <MessageCircle className="w-8 h-8" />
-  <span>Chat on WhatsApp Now</span>
-  <span className="absolute inset-0 rounded-3xl bg-white/10 scale-0 
-                   group-hover:scale-150 transition-transform duration-700" />
-</a>
-          </div>
-        </div>
-      </section>
+  <div className="relative z-10 px-6 pb-8">
+    <h1 className="text-3xl md:text-5xl font-black mb-6" style={{ textShadow: '0 4px 10px #000' }}>
+      Get in Touch
+    </h1>
+  <a
+      href="https://wa.me/94773951779"
+      target="_blank"
+      className="inline-flex items-center gap-3 px-10 py-5 bg-white/20 backdrop-blur-md border-2 border-white/40 rounded-full text-xl font-bold hover:scale-110 active:scale-95 transition shadow-2xl"
+    >
+      <MessageCircle className="w-7 h-7" /> Chat on WhatsApp
+    </a>
+  </div>
+</section>
 
       {/* CONTACT INFO + SOCIAL + MAP */}
       <section className="py-20 bg-white"> {/* Changed from gray-50 to white */}
