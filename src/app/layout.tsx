@@ -89,7 +89,7 @@ export const metadata: Metadata = {
 
   // --- Verification (add your codes from Google Search Console / Bing) ---
   verification: {
-    google: 'YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE', // ← replace
+    google: 'google-site-verification=6hYYOxb3onabYGxuF2uFk3V6dusSKlZxS4zOVlXwQ6U', // ← replace
     // bing: 'YOUR_BING_CODE',
   },
 
