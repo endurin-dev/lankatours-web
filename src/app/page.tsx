@@ -2,11 +2,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import type { LucideProps } from 'lucide-react';
+import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import {
   Plane, Building2, DollarSign, Compass, Waves, Bike,
   ShoppingBag, Sparkles, ArrowRight, Star, Shield,
   Clock, CreditCard, Phone
 } from 'lucide-react';
+
+type LucideIcon = ForwardRefExoticComponent<LucideProps & RefAttributes<SVGSVGElement>>;
 
 // ─── PAGE-LEVEL METADATA (overrides layout defaults for this route) ───────────
 export const metadata: Metadata = {
@@ -218,7 +222,7 @@ function ServiceCard({
   description,
 }: {
   title: string;
-  icon: unknown;
+  icon: LucideIcon;
   badge?: string;
   description: string;
 }) {
