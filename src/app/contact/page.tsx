@@ -48,7 +48,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-semibold text-lg text-gray-900">Phone / WhatsApp</p>
-                      <a href="tel:+94771234567" className="text-xl text-green-600 hover:underline">+94 77 395 1779</a>
+                      <a href="tel:+94771234567" className="text-xl text-green-600 hover:underline">+94773951779</a>
                       <p className="text-sm text-gray-600 mt-1">Call or message anytime – we reply in minutes!</p>
                     </div>
                   </div>
@@ -59,7 +59,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-semibold text-lg text-gray-900">Email</p>
-                      <a href="mailto:info@lankatoursandtransfers.com" className="text-xl text-green-600 hover:underline">
+                      <a href="mailto:tourstransfers.lk@gmail.com" className="text-xl text-green-600 hover:underline">
                         tourstransfers.lk@gmail.com
                       </a>
                     </div>
@@ -71,10 +71,16 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-semibold text-lg text-gray-900">Office Address</p>
-                      <p className="text-lg text-gray-700">
-                        No. 416/E, Matara Road,<br />
-                        Galle,<br />
-                        Southern Province, Sri Lanka
+                      <p className="text-lg text-green-700">
+
+Lanka tours & transfer <br />
+312/A,<br />
+Ella road,<br />
+Kurundugahahethekma,<br /> 
+Elpitiya,<br />
+Sri lanka 
+80400
+
                       </p>
                     </div>
                   </div>
