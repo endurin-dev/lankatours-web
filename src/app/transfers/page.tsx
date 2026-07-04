@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Car, Users } from 'lucide-react';
 
 // ─── Price Data from Excel ───────────────────────────────────────────────────
@@ -55,7 +56,9 @@ const extras = [
   { id: 'wheelchair',  label: 'Wheelchair (per day)',         price: 3000  },
 ];
 
-export default function TransfersPage() {
+function TransfersForm() {
+  const searchParams = useSearchParams();
+
   const [direction, setDirection]   = useState<'pickup' | 'drop'>('pickup');
   const [destination, setDestination] = useState('');
   const [vehicleIdx, setVehicleIdx]  = useState(1); // Sedan default
@@ -72,8 +75,50 @@ export default function TransfersPage() {
   const [whatsapp, setWhatsapp] = useState('');
   const [message, setMessage] = useState('');
 
-  const toggleExtra = (id: string) =>
+  // ─── Pre-fill everything from query params sent by the hero quote form ───
+  useEffect(() => {
+    const directionParam = searchParams.get('direction');
+    const destParam = searchParams.get('destination');
+    const vehicleParam = searchParams.get('vehicle');
+    const dateParam = searchParams.get('date');
+    const timeParam = searchParams.get('time');
+    const passengersParam = searchParams.get('passengers');
+    const priceParam = searchParams.get('price');
+
+    if (directionParam === 'pickup' || directionParam === 'drop') {
+      setDirection(directionParam);
+    }
+
+    if (destParam) {
+      const match = destinations.find(d => d.name === destParam);
+      if (match) setDestination(match.name);
+    }
+
+    if (vehicleParam !== null) {
+      const idx = Number(vehicleParam);
+      if (!Number.isNaN(idx) && idx >= 0 && idx < vehicles.length) {
+        setVehicleIdx(idx);
+      }
+    }
+
+    if (dateParam) setPickupDate(dateParam);
+    if (timeParam) setPickupTime(timeParam);
+    if (passengersParam) setPassengers(passengersParam);
+
+    // Show the fare immediately if it was already calculated in the hero form
+    if (priceParam) {
+      const parsedPrice = Number(priceParam);
+      if (!Number.isNaN(parsedPrice) && parsedPrice > 0) {
+        setFare(parsedPrice);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const toggleExtra = (id: string) => {
     setSelectedExtras(prev => ({ ...prev, [id]: !prev[id] }));
+    setFare(null); // recalculation needed once extras change after a pre-filled price
+  };
 
   const calculateFare = () => {
     if (!destination || !passengers || !pickupDate || !pickupTime) return;
@@ -88,7 +133,6 @@ export default function TransfersPage() {
   const handleBooking = (e: React.FormEvent) => {
     e.preventDefault();
     const selected = vehicles[vehicleIdx];
-    const dest = destinations.find(d => d.name === destination);
     const extrasText = extras.filter(e => selectedExtras[e.id]).map(e => e.label).join(', ') || 'None';
     alert(
       `Booking Confirmed!\n\nRoute: Bandaranaike Airport (CMB) ↔ ${destination}\nDirection: Airport ${direction === 'pickup' ? 'Pickup' : 'Drop'}\nVehicle: ${selected.name} (${selected.pax})\nTotal Fare: LKR ${fare?.toLocaleString()}\nPickup: ${pickupDate} at ${pickupTime}\nExtras: ${extrasText}\nName: ${name}\nWhatsApp: ${whatsapp || phone}\n\nWe will contact you on WhatsApp within 5 minutes!`
@@ -99,71 +143,13 @@ export default function TransfersPage() {
 
   return (
     <>
-      {/* ── Hero ── */}
-      <section className="bg-white pt-32 pb-20 md:pt-40 md:pb-28">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="text-center mb-14 md:mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
-              Airport & Hotel Transfers Sri Lanka
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-700 mt-3 md:mt-4 max-w-4xl mx-auto leading-snug">
-              Private • Safe • Comfortable • Fixed Prices • 24/7 Available
-            </p>
-            <p className="text-lg md:text-xl text-gray-600 mt-2 md:mt-3 leading-snug">
-              From Bandaranaike International Airport (CMB) – Island-wide Coverage
-            </p>
-          </div>
-
-          {/* Services Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-10">
-            {[
-              { gradient: 'from-green-500 to-emerald-600', title: '24/7 Airport Transfers', desc: 'Available round-the-clock for early arrivals, late flights, or midnight transfers', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /> },
-              { gradient: 'from-blue-500 to-indigo-600',   title: 'Fixed Price Guarantee',   desc: 'Transparent pricing – no surge, no meter, no extra charges ever',          icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /> },
-              { gradient: 'from-purple-500 to-pink-600',   title: 'Personal Meet & Greet',   desc: 'Driver waits with your name board at Bandaranaike Airport arrivals hall',   icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /> },
-              { gradient: 'from-orange-500 to-red-600',    title: 'Door-to-Door Delivery',   desc: 'Direct transfer to your hotel – Colombo, Kandy, Galle, Sigiriya, Ella & beyond', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /> },
-              { gradient: 'from-teal-500 to-cyan-600',     title: 'Real-Time Flight Tracking', desc: 'We track your flight and adjust pickup time automatically – no stress if delayed', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /> },
-              { gradient: 'from-amber-500 to-orange-600',  title: 'Free Cancellation',        desc: 'Cancel up to 24 hours before your transfer – full refund, no questions',    icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /> },
-            ].map(item => (
-              <div key={item.title} className="group text-center transform transition-all duration-300 hover:scale-110">
-                <div className={`w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 bg-gradient-to-br ${item.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl`}>
-                  <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">{item.icon}</svg>
-                </div>
-                <h3 className="font-bold text-gray-800 text-sm md:text-base">{item.title}</h3>
-                <p className="text-xs md:text-sm text-gray-600 mt-1 leading-tight">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-16">
-            <p className="text-2xl md:text-3xl font-bold text-gray-800">Get Instant Quote in 10 Seconds</p>
-            <div className="inline-flex items-center mt-4">
-              <div className="h-1 w-32 bg-green-600 rounded-full"></div>
-              <span className="mx-5 text-green-600 font-bold text-xl">Scroll Down</span>
-              <div className="h-1 w-32 bg-green-600 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── What's Included Banner ── */}
-      <section className="bg-green-700 py-8">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <p className="text-center text-white font-semibold text-lg mb-4">✅ Every Transfer Includes – No Hidden Fees:</p>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-white/90 text-sm md:text-base">
-            {['Airport Entrance Fee', 'Parking Charges', 'Highway Tolls', 'Fuel & Driver Meals', 'Professional English-Speaking Driver', 'Luggage Assistance', '24/7 Customer Support'].map(item => (
-              <span key={item} className="flex items-center gap-2"><span className="text-green-300">✓</span>{item}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Main Booking Calculator ── */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      {/* ── Main Booking Calculator (now first) ── */}
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-gray-50">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Get Instant Transfer Price & Book Now
-            </h2>
+            </h1>
             <p className="text-xl text-gray-600">Real fixed prices from our rate sheet • No hidden charges • Book in 60 seconds</p>
           </div>
 
@@ -291,7 +277,7 @@ export default function TransfersPage() {
                           <input
                             type="checkbox"
                             checked={!!selectedExtras[e.id]}
-                            onChange={() => { toggleExtra(e.id); setFare(null); }}
+                            onChange={() => toggleExtra(e.id)}
                             className="w-5 h-5 text-green-600 rounded"
                           />
                           {e.label}
@@ -388,6 +374,64 @@ export default function TransfersPage() {
           </div>
         </div>
       </section>
+
+      {/* ── Hero / Marketing content (now after the form) ── */}
+      <section className="bg-white py-20 md:py-28">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="text-center mb-14 md:mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+              Airport & Hotel Transfers Sri Lanka
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-700 mt-3 md:mt-4 max-w-4xl mx-auto leading-snug">
+              Private • Safe • Comfortable • Fixed Prices • 24/7 Available
+            </p>
+            <p className="text-lg md:text-xl text-gray-600 mt-2 md:mt-3 leading-snug">
+              From Bandaranaike International Airport (CMB) – Island-wide Coverage
+            </p>
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-10">
+            {[
+              { gradient: 'from-green-500 to-emerald-600', title: '24/7 Airport Transfers', desc: 'Available round-the-clock for early arrivals, late flights, or midnight transfers', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /> },
+              { gradient: 'from-blue-500 to-indigo-600',   title: 'Fixed Price Guarantee',   desc: 'Transparent pricing – no surge, no meter, no extra charges ever',          icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /> },
+              { gradient: 'from-purple-500 to-pink-600',   title: 'Personal Meet & Greet',   desc: 'Driver waits with your name board at Bandaranaike Airport arrivals hall',   icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /> },
+              { gradient: 'from-orange-500 to-red-600',    title: 'Door-to-Door Delivery',   desc: 'Direct transfer to your hotel – Colombo, Kandy, Galle, Sigiriya, Ella & beyond', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /> },
+              { gradient: 'from-teal-500 to-cyan-600',     title: 'Real-Time Flight Tracking', desc: 'We track your flight and adjust pickup time automatically – no stress if delayed', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /> },
+              { gradient: 'from-amber-500 to-orange-600',  title: 'Free Cancellation',        desc: 'Cancel up to 24 hours before your transfer – full refund, no questions',    icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /> },
+            ].map(item => (
+              <div key={item.title} className="group text-center transform transition-all duration-300 hover:scale-110">
+                <div className={`w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 bg-gradient-to-br ${item.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-2xl`}>
+                  <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">{item.icon}</svg>
+                </div>
+                <h3 className="font-bold text-gray-800 text-sm md:text-base">{item.title}</h3>
+                <p className="text-xs md:text-sm text-gray-600 mt-1 leading-tight">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── What's Included Banner ── */}
+      <section className="bg-green-700 py-8">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <p className="text-center text-white font-semibold text-lg mb-4">✅ Every Transfer Includes – No Hidden Fees:</p>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-white/90 text-sm md:text-base">
+            {['Airport Entrance Fee', 'Parking Charges', 'Highway Tolls', 'Fuel & Driver Meals', 'Professional English-Speaking Driver', 'Luggage Assistance', '24/7 Customer Support'].map(item => (
+              <span key={item} className="flex items-center gap-2"><span className="text-green-300">✓</span>{item}</span>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
+  );
+}
+
+// useSearchParams requires a Suspense boundary in the App Router
+export default function TransfersPage() {
+  return (
+    <Suspense fallback={null}>
+      <TransfersForm />
+    </Suspense>
   );
 }

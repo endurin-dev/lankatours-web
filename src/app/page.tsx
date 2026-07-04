@@ -9,6 +9,7 @@ import {
   ShoppingBag, Sparkles, ArrowRight, Star, Shield,
   Clock, CreditCard, Phone
 } from 'lucide-react';
+import HeroQuoteForm from '@/components/HeroQuoteForm';
 
 type LucideIcon = ForwardRefExoticComponent<LucideProps & RefAttributes<SVGSVGElement>>;
 
@@ -271,60 +272,84 @@ export default function Home() {
         • The original used <h2> here — changed to <h1> since this IS the page title.
         • Image alt text describes the visual AND includes the brand name.
       */}
-      <section
-        className="relative h-screen min-h-[600px] flex flex-col justify-end text-white"
-        aria-label="Lanka Tours and Transfers — hero banner"
-      >
-        <Image
-          src="/images/hero-banner.webp"
-          alt="Scenic Sri Lanka landscape — Lanka Tours and Transfers airport transfer and tour services"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" aria-hidden="true" />
+<section
+  className="relative min-h-screen flex flex-col justify-center text-white"
+  aria-label="Lanka Tours and Transfers — hero banner"
+>
+  <Image
+    src="/images/hero-banner.webp"
+    alt="Scenic Sri Lanka landscape — Lanka Tours and Transfers airport transfer and tour services"
+    fill
+    priority
+    className="object-cover"
+    sizes="100vw"
+  />
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" aria-hidden="true" />
 
-        <div className="relative z-10 pb-16 md:pb-24 px-6">
-          <div className="max-w-5xl mx-auto text-center">
-            {/*
-              ✅ THIS IS NOW THE <H1> — the most important SEO change on this page.
-              Contains the brand name + primary service + location keywords.
-            */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              Sri Lanka Airport Transfers & Private Tours
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-10 font-light max-w-3xl mx-auto opacity-95">
-              Your Trusted Sri Lanka Travel Partner Since 2020 — Fixed Prices, No Hidden Fees
-            </p>
+  <div className="relative z-10 px-6 py-32 md:py-24">
+    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link
-                href="/transfers"
-                className="relative inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl text-lg md:text-xl font-bold text-white bg-white/10 backdrop-blur-xl border border-white/30 shadow-2xl shadow-black/20 overflow-hidden transition-all duration-500 ease-out hover:bg-white/20 hover:border-white/50 hover:shadow-3xl hover:shadow-black/30 hover:scale-105 active:scale-95 group"
-                aria-label="Book your Sri Lanka airport transfer"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" aria-hidden="true" />
-                <span className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/20 to-transparent opacity-40" aria-hidden="true" />
-                <span className="relative z-10 flex items-center gap-3">
-                  Book Airport Transfer
-                  <ArrowRight className="w-7 h-7 transition-transform duration-300 group-hover:translate-x-2" aria-hidden="true" />
-                </span>
-              </Link>
+      {/* LEFT — Text & CTA */}
+      <div className="text-center lg:text-left">
 
-              <Link
-                href="/contact"
-                className="relative inline-flex items-center justify-center px-10 py-5 rounded-2xl text-lg md:text-xl font-bold text-white bg-gradient-to-br from-green-500/30 to-emerald-600/40 backdrop-blur-xl border border-white/40 shadow-2xl shadow-green-900/40 before:absolute before:inset-0 before:bg-gradient-to-t before:from-white/20 before:via-transparent before:to-transparent before:opacity-60 hover:from-green-500/40 hover:to-emerald-600/50 hover:border-white/60 hover:shadow-3xl hover:shadow-green-900/50 hover:scale-105 active:scale-95 transition-all duration-500 ease-out overflow-hidden group"
-                aria-label="Get a free quote for Sri Lanka tours and transfers"
-              >
-                <span className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/30 to-transparent opacity-50" aria-hidden="true" />
-                <span className="relative z-10">Get Free Quote</span>
-              </Link>
-            </div>
-          </div>
+        {/* Trust badge strip */}
+        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-5">
+          <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/25 text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full">
+            <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+            4.9/5 Rated
+          </span>
+          <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/25 text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full">
+            <Shield className="w-3.5 h-3.5 text-green-400" />
+            Licensed & Insured
+          </span>
+          <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/25 text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full">
+            <Clock className="w-3.5 h-3.5 text-blue-300" />
+            24/7 Support
+          </span>
         </div>
-      </section>
 
+        {/*
+          ✅ THIS IS NOW THE <H1> — the most important SEO change on this page.
+          Contains the brand name + primary service + location keywords.
+          Font size reduced for a tighter, more refined look.
+        */}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold mb-4 leading-tight tracking-tight">
+          Sri Lanka Airport Transfers & Private Tours
+        </h1>
+
+        <p className="text-base sm:text-lg md:text-xl mb-8 font-light max-w-lg mx-auto lg:mx-0 opacity-90 leading-relaxed">
+          Your Trusted Sri Lanka Travel Partner Since 2020  Fixed Prices, No Hidden Fees
+        </p>
+
+        {/* Restyled single CTA */}
+        <div className="flex justify-center lg:justify-start">
+          <Link
+            href="/contact"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-base md:text-lg font-bold text-white bg-gradient-to-r from-green-500 to-emerald-600 shadow-xl shadow-green-900/40 overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-green-900/50 hover:scale-105 active:scale-95"
+            aria-label="Get a free quote for Sri Lanka tours and transfers"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" aria-hidden="true" />
+            <span className="relative z-10 flex items-center gap-2">
+              Get Free Quote
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+            </span>
+          </Link>
+        </div>
+
+        {/* Small supporting microcopy under the button */}
+        <p className="mt-4 text-xs text-white/60 font-medium">
+          No payment required · Instant response on WhatsApp
+        </p>
+      </div>
+
+      {/* RIGHT — Instant quote widget */}
+      <div className="w-full flex justify-center lg:justify-end">
+        <HeroQuoteForm />
+      </div>
+
+    </div>
+  </div>
+</section>
       {/* ── TRUST SIGNALS / PARTNERS ─────────────────────────────────────────── */}
       {/*
         SEO: aria-label on section tells crawlers what this strip is about.
