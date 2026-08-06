@@ -75,6 +75,11 @@ function TransfersForm() {
   const [whatsapp, setWhatsapp] = useState('');
   const [message, setMessage] = useState('');
 
+  // Booking submission state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookingStatus, setBookingStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [bookingError, setBookingError] = useState('');
+
   // ─── Pre-fill everything from query params sent by the hero quote form ───
   useEffect(() => {
     const directionParam = searchParams.get('direction');
@@ -130,13 +135,52 @@ function TransfersForm() {
     setFare(total);
   };
 
-  const handleBooking = (e: React.FormEvent) => {
+  const handleBooking = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (fare === null) return;
+
+    setIsSubmitting(true);
+    setBookingStatus('idle');
+    setBookingError('');
+
     const selected = vehicles[vehicleIdx];
-    const extrasText = extras.filter(e => selectedExtras[e.id]).map(e => e.label).join(', ') || 'None';
-    alert(
-      `Booking Confirmed!\n\nRoute: Bandaranaike Airport (CMB) ↔ ${destination}\nDirection: Airport ${direction === 'pickup' ? 'Pickup' : 'Drop'}\nVehicle: ${selected.name} (${selected.pax})\nTotal Fare: LKR ${fare?.toLocaleString()}\nPickup: ${pickupDate} at ${pickupTime}\nExtras: ${extrasText}\nName: ${name}\nWhatsApp: ${whatsapp || phone}\n\nWe will contact you on WhatsApp within 5 minutes!`
-    );
+    const extrasList = extras.filter(x => selectedExtras[x.id]).map(x => x.label);
+
+    try {
+      const res = await fetch('/api/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          direction,
+          destination,
+          vehicleName: selected.name,
+          vehiclePax: selected.pax,
+          fare,
+          pickupDate,
+          pickupTime,
+          passengers,
+          extras: extrasList,
+          name,
+          email,
+          phone,
+          whatsapp,
+          message,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data?.error || 'Something went wrong sending your booking.');
+      }
+
+      setBookingStatus('success');
+    } catch (err) {
+      setBookingStatus('error');
+      setBookingError(err instanceof Error ? err.message : 'Something went wrong. Please try again or WhatsApp us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const canCalculate = !!destination && !!passengers && !!pickupDate && !!pickupTime;
@@ -338,7 +382,7 @@ function TransfersForm() {
                 </div>
 
                 {/* Final Fare + Booking Form */}
-                {fare !== null && fare > 0 && (
+                {fare !== null && fare > 0 && bookingStatus !== 'success' && (
                   <div className="mt-16 p-10 bg-green-50 rounded-3xl border-4 border-green-200 text-black">
                     <div className="text-center mb-10">
                       <p className="text-lg text-gray-600 mb-1">Fixed Transfer Rate</p>
@@ -348,25 +392,48 @@ function TransfersForm() {
 
                     <form onSubmit={handleBooking} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input type="text"  placeholder="Full Name *"              value={name}     onChange={e => setName(e.target.value)}     required className="px-5 py-4 border-2 border-gray-300 rounded-xl text-black text-base" />
-                        <input type="email" placeholder="Email *"                  value={email}    onChange={e => setEmail(e.target.value)}    required className="px-5 py-4 border-2 border-gray-300 rounded-xl text-black text-base" />
-                        <input type="tel"   placeholder="Phone *"                  value={phone}    onChange={e => setPhone(e.target.value)}    required className="px-5 py-4 border-2 border-gray-300 rounded-xl text-black text-base" />
-                        <input type="tel"   placeholder="WhatsApp (Recommended)"   value={whatsapp} onChange={e => setWhatsapp(e.target.value)}          className="px-5 py-4 border-2 border-gray-300 rounded-xl text-black text-base" />
+                        <input type="text"  placeholder="Full Name *"              value={name}     onChange={e => setName(e.target.value)}     required disabled={isSubmitting} className="px-5 py-4 border-2 border-gray-300 rounded-xl text-black text-base disabled:bg-gray-100" />
+                        <input type="email" placeholder="Email *"                  value={email}    onChange={e => setEmail(e.target.value)}    required disabled={isSubmitting} className="px-5 py-4 border-2 border-gray-300 rounded-xl text-black text-base disabled:bg-gray-100" />
+                        <input type="tel"   placeholder="Phone *"                  value={phone}    onChange={e => setPhone(e.target.value)}    required disabled={isSubmitting} className="px-5 py-4 border-2 border-gray-300 rounded-xl text-black text-base disabled:bg-gray-100" />
+                        <input type="tel"   placeholder="WhatsApp (Recommended)"   value={whatsapp} onChange={e => setWhatsapp(e.target.value)}          disabled={isSubmitting} className="px-5 py-4 border-2 border-gray-300 rounded-xl text-black text-base disabled:bg-gray-100" />
                       </div>
                       <textarea
                         placeholder="Flight number, hotel name, special requests..."
                         rows={4}
                         value={message}
                         onChange={e => setMessage(e.target.value)}
-                        className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl text-black text-base"
+                        disabled={isSubmitting}
+                        className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl text-black text-base disabled:bg-gray-100"
                       />
+
+                      {bookingStatus === 'error' && (
+                        <p className="text-center text-red-600 bg-red-50 border border-red-200 rounded-xl py-3 px-4 text-sm font-medium">
+                          {bookingError}
+                        </p>
+                      )}
+
                       <div className="text-center">
-                        <button type="submit" className="bg-orange-600 hover:bg-orange-700 text-white px-20 py-6 rounded-2xl text-xl font-bold shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105">
-                          Confirm Booking
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="bg-orange-600 hover:bg-orange-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white px-20 py-6 rounded-2xl text-xl font-bold shadow-2xl hover:shadow-3xl transition-all transform hover:scale-105"
+                        >
+                          {isSubmitting ? 'Sending Booking…' : 'Confirm Booking'}
                         </button>
                         <p className="text-sm text-gray-500 mt-3">We'll contact you on WhatsApp within 5 minutes</p>
                       </div>
                     </form>
+                  </div>
+                )}
+
+                {/* Success state */}
+                {bookingStatus === 'success' && (
+                  <div className="mt-16 p-10 bg-green-50 rounded-3xl border-4 border-green-200 text-black text-center">
+                    <div className="text-6xl mb-4">✅</div>
+                    <h3 className="text-3xl font-bold text-green-700 mb-3">Booking Confirmed!</h3>
+                    <p className="text-gray-700 text-lg max-w-md mx-auto">
+                      We've emailed your confirmation to <strong>{email}</strong>. Our team will reach out on WhatsApp within 5 minutes.
+                    </p>
                   </div>
                 )}
               </div>
